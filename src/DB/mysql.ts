@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
 import { AnswersTS } from '../models/answers';
+import { QuestionsTS } from '../models/questions';
 
 dotenv.config();
 export const appDataSource = new DataSource({
@@ -9,6 +10,6 @@ export const appDataSource = new DataSource({
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  entities: [AnswersTS],
+  entities: [AnswersTS, QuestionsTS],
   synchronize: true,
 });
