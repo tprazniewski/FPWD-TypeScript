@@ -7,10 +7,12 @@ import express, {
 } from 'express';
 import questionRoutes from './routes/questions';
 import { appDataSource } from './DB/mysql';
+import bodyParser from 'body-parser';
 
 const app = express();
 const PORT = process.env.PORT;
 
+app.use(bodyParser.json());
 app.get('/', (_, res) => {
   res.status(200).json({ message: 'Welcome to FPWD!' });
 });
