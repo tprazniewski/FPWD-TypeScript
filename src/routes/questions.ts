@@ -1,9 +1,11 @@
-import {Router} from 'express'
+import { Router } from 'express';
 
 const router = Router(); //This allow us to register middleware
 
-router.post('/',)
+router.post('/');
 
-router.get('/',)
+router.get('/');
 
-router.patch('/:id',)
+router.patch('/:id');
+
+export default router;
