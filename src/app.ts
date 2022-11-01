@@ -1,6 +1,5 @@
 // const express = require('express')
 import express, {
-  Express,
   Request,
   Response,
   NextFunction,

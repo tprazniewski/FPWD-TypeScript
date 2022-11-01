@@ -1,17 +1,48 @@
+import { appDataSource } from '../DB/mysql';
 import express, { RequestHandler } from 'express';
+import { QuestionsTS } from '../models/questions';
 
-const getQuestions: RequestHandler = (req, res, next) => {};
+export class QuestionsController {
+  constructor(
+    private questionRepository = appDataSource.getRepository(
+      QuestionsTS,
+    ),
+  ) {}
 
-const getQuestionById: RequestHandler = (
-  req,
-  res,
-  next,
-) => {};
+  public async getAllQuestions(): Promise<QuestionsTS[]> {
+    let allQuestions: QuestionsTS[];
 
-const addQuestion: RequestHandler = (req, res, next) => {};
+    try {
+      allQuestions = await this.questionRepository.find({
+        order: {
+          id: 'ASC',
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+// export const getQuestions: RequestHandler = (
+//   req,
+//   res,
+//   next,
+// ) => {
+//   res
+//     .status(200)
+//     .send({ message: 'Welcome this is questions router' });
+// };
 
-const getAnswers: RequestHandler = (req, res, next) => {};
+// const addQuestion: RequestHandler = (req, res, next) => {};
 
-const addAnswer: RequestHandler = (req, res, next) => {};
+// const getQuestionById: RequestHandler = (
+//   req,
+//   res,
+//   next,
+// ) => {};
 
-const getAnswer: RequestHandler = (req, res, next) => {};
+// const getAnswers: RequestHandler = (req, res, next) => {};
+
+// const addAnswer: RequestHandler = (req, res, next) => {};
+
+// const getAnswer: RequestHandler = (req, res, next) => {};
