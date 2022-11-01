@@ -6,34 +6,21 @@ import express, {
 } from 'express';
 
 import { Router } from 'express';
-import { QuestionsController } from '../controllers/questions';
 
-// import { getQuestions } from '../controllers/questions';
+import { Tquestion } from '../entities/question';
 
-// router.get('/', getQuestions)
-// router.get('/:questionId', getQuestionById)
-
-// router.post('/', addQuestion)
-
-// router.get('/:questionId/answers', getAnswers)
-
-// router.post('/:questionId/answers', addAnswer)
-
-// router.get('/:questionId/answers/:answerId', getAnswer)
 const router = Router(); //This allow us to register middleware
-router.get(
-  '/',
-  (req: Request, res: Response, next: NextFunction) => {
-    const questionsController = new QuestionsController();
-    questionsController.getAllQuestions();
-    // res.send({
-    //   message: 'You have reaved the questions route',
-    // });
-  },
-);
 
-router.post('/');
-
-router.patch('/:id');
+router.post('/', async (req, res) => {
+  const { author, summary } = req.body;
+  console.log('auth', author);
+  console.log('summ', summary);
+  const question = Tquestion.create({
+    author,
+    summary,
+  });
+  await question.save();
+  return res.json(question);
+});
 
 export default router;

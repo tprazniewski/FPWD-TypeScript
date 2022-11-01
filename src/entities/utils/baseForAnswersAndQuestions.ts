@@ -2,11 +2,14 @@
 import {
   Entity,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
   Column,
+  BaseEntity,
 } from 'typeorm';
 
 @Entity()
-export class QuestionsTS {
+export class Base extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -20,4 +23,10 @@ export class QuestionsTS {
     type: 'text',
   })
   summary: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }

@@ -1,27 +1,27 @@
 import { appDataSource } from '../DB/mysql';
 import express, { RequestHandler } from 'express';
-import { QuestionsTS } from '../models/questions';
+import { Tquestion } from '../entities/question';
 
 export class QuestionsController {
   constructor(
     private questionRepository = appDataSource.getRepository(
-      QuestionsTS,
+      Tquestion,
     ),
   ) {}
 
-  public async getAllQuestions(): Promise<QuestionsTS[]> {
-    let allQuestions: QuestionsTS[];
+  // public async getAllQuestions(): Promise<QuestionsTS[]> {
+  //   let allQuestions: QuestionsTS[];
 
-    try {
-      allQuestions = await this.questionRepository.find({
-        order: {
-          id: 'ASC',
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  //   try {
+  //     allQuestions = await this.questionRepository.find({
+  //       order: {
+  //         id: 'ASC',
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 }
 // export const getQuestions: RequestHandler = (
 //   req,
