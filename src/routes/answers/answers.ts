@@ -8,13 +8,15 @@ const router = Router({ mergeParams: true }); //This allow us to register middle
 router.get(
   '/',
   async (req: Request<{ questionId: string }>, res) => {
-    // const useRepo = appDataSource.getRepository(Tanswer);
-    // const answ = useRepo.find({ tquestion_id: 1 });
     const { questionId } = req.params;
-    const tquestion = await Tquestion.find({
-      relations: ['tanswer'],
+    const answer = await Tanswer.find({
+      where: {
+        tquestion: {
+          id: parseInt(questionId),
+        },
+      },
     });
-    const answers = Tanswer.findOneBy({});
+    res.send(answer);
   },
 );
 

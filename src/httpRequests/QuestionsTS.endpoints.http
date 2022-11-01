@@ -1,9 +1,8 @@
 // For Http Yac
-
-GET http://localhost:999/questions
+GET http://localhost:999/questions/2/answers
 Content-Type: application/json
 
-GET http://localhost:999/questions/1/answers
+GET http://localhost:999/questions
 Content-Type: application/json
 
 GET http://localhost:999/questions/1/
@@ -16,9 +15,9 @@ Content-Type: application/json
     "author": "Edyta Prazniewska",
     "summary": "Do I have a chance to get a job at FPWD?"
 }
-POST http://localhost:999/questions/1/answers
+POST http://localhost:999/questions/2/answers
 Content-Type: application/json
 {
     "author": "Tomasz Prazniewski",
-    "summary": "maybe"
+    "summary": "yes"
 }
