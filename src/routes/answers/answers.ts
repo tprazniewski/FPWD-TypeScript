@@ -20,6 +20,29 @@ router.get(
   },
 );
 
+router.get(
+  '/:answerId',
+  async (
+    req: Request<{ questionId: string; answerId: string }>,
+    res,
+  ) => {
+    const { questionId, answerId } = req.params;
+    console.log('answer', answerId);
+    console.log('question', questionId);
+    const answer = await Tanswer.findOne({
+      where: [
+        {
+          tquestion: {
+            id: parseInt(questionId),
+          },
+          id: parseInt(answerId),
+        },
+      ],
+    });
+    res.send(answer);
+  },
+);
+
 router.post(
   '/',
   async (req: Request<{ questionId: string }>, res) => {

@@ -1,5 +1,8 @@
 // For Http Yac
-GET http://localhost:999/questions/2/answers
+GET http://localhost:999/questions/2/answers/4
+Content-Type: application/json
+
+GET http://localhost:999/questions/1/answers
 Content-Type: application/json
 
 GET http://localhost:999/questions
