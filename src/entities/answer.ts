@@ -8,6 +8,9 @@ export class Tanswer extends Base {
   @ManyToOne(
     () => Tquestion, // We are going to return
     (tquestion) => tquestion.tanswers,
+    {
+      onDelete: 'CASCADE',
+    },
   )
   @JoinColumn({
     name: 'tquestion_id',

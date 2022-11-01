@@ -28,6 +28,7 @@ app.use(
     res.status(500).json({ message: err.message });
   },
 );
+
 appDataSource
   .initialize()
   .then(() => {
