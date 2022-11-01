@@ -12,8 +12,18 @@ import answersRoutes from './answers/answers';
 
 const router = Router(); //This allow us to register middleware
 
-router.get('/', (req, res) => {
-  res.send({ message: 'hejloo Yacc' });
+router.get('/', async (req, res) => {
+  const question = await Tquestion.find();
+
+  return res.json(question);
+});
+router.get('/:questionId', async (req, res) => {
+  const { questionId } = req.params;
+  const question = await Tquestion.findOneBy({
+    id: parseInt(questionId),
+  });
+
+  return res.json(question);
 });
 
 router.post('/', async (req, res) => {

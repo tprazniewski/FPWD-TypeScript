@@ -1,7 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { Tquestion } from '../../entities/question';
 import { Tanswer } from '../../entities/answer';
-
 const router = Router({ mergeParams: true }); //This allow us to register middleware
 
 router.post(
