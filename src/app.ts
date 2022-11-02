@@ -8,7 +8,7 @@ import questionRoutes from './routes/questions';
 import { appDataSource } from './DB/mysql';
 import bodyParser from 'body-parser';
 
-const app = express();
+export const app = express();
 const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
