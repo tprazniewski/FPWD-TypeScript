@@ -5,6 +5,7 @@ import {
   getAllAnswers,
   getAnswer,
   addAnswer,
+  deleteAnswer,
 } from '../../controllers/answers';
 const router = Router({ mergeParams: true }); //This allow us to register middleware
 
@@ -13,5 +14,7 @@ router.get('/', getAllAnswers);
 router.get('/:answerId', getAnswer);
 
 router.post('/', addAnswer);
+
+router.delete('/:id', deleteAnswer);
 
 export default router;

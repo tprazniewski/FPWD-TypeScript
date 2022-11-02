@@ -61,3 +61,12 @@ export const addAnswer = async (
   answer.save();
   return res.send({ answer });
 };
+
+export const deleteAnswer: RequestHandler = async (
+  req,
+  res,
+) => {
+  const { id } = req.params;
+  const response = await Tanswer.delete(parseInt(id));
+  return res.json(response);
+};
