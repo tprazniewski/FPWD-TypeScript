@@ -11,9 +11,14 @@ export const getAllQuestions = async (
   req: Request,
   res: Response,
 ) => {
-  const question = await Tquestion.find();
-
-  return res.json(question);
+  try {
+    const question = await Tquestion.find();
+    return res.json(question);
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ err: 'Internal server error' });
+  }
 };
 
 export const getQuestion: RequestHandler = async (
@@ -21,11 +26,17 @@ export const getQuestion: RequestHandler = async (
   res,
 ) => {
   const { questionId } = req.params;
-  const question = await Tquestion.findOneBy({
-    id: parseInt(questionId),
-  });
+  try {
+    const question = await Tquestion.findOneBy({
+      id: parseInt(questionId),
+    });
 
-  return res.json(question);
+    return res.json(question);
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ err: 'Internal server error' });
+  }
 };
 
 export const addQuestion: RequestHandler = async (
@@ -35,12 +46,18 @@ export const addQuestion: RequestHandler = async (
   const { author, summary } = req.body;
   console.log('auth', author);
   console.log('summ', summary);
-  const question = Tquestion.create({
-    author,
-    summary,
-  });
-  await question.save();
-  return res.json(question);
+  try {
+    const question = Tquestion.create({
+      author,
+      summary,
+    });
+    await question.save();
+    return res.json(question);
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ err: 'Internal server error' });
+  }
 };
 
 export const deleteQuestion: RequestHandler = async (
@@ -48,6 +65,12 @@ export const deleteQuestion: RequestHandler = async (
   res,
 ) => {
   const { id } = req.params;
-  const response = await Tquestion.delete(parseInt(id));
-  return res.json(response);
+  try {
+    const response = await Tquestion.delete(parseInt(id));
+    return res.json(response);
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ err: 'Internal server error' });
+  }
 };
